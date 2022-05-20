@@ -1,21 +1,15 @@
 import React from 'react';
-
 import './App.css';
-
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SideBar from './components/SideBar';
 
+import react, { useContext } from 'react'
+import { AuthContext } from "./context";
 
-<Router>
-    <div className="App">
-        <header>
-            <Navbar />
-        </header>
-        <Routes>
-            <Route path="/" exact component={Home} />
-        </Routes>
-        <footer>
-            <Footer />
-        </footer>
-    </div>
-</Router>
+export default function AuthenticatedUser() {
+    const authContext = useContext(AuthContext);
+
+    return authContext.isLoggedIn && <h2>Protected resource</h2>;
+}
+
+

@@ -13,6 +13,7 @@ import Authentication from './components/authentication';
 import { AuthContext } from './context';
 
 function App() {
+
   const [loggedIn, setLoggedIn] = useState(false);
   const login = () => {
     setLoggedIn(true);
@@ -20,14 +21,30 @@ function App() {
   const logout = () => {
     setLoggedIn(false);
   }
+
   return (
+
     <AuthContext.Provider value={isLoggedIn: isLoggedIn, login: login, logout: logout}>
-       <div class="center">
-          <Authentication/>
-          <ProtectedResource />
-       </div>
-   <AuthContext.Provider />
-)
+      <div class="center">
+      <Authentication />
+      <ProtectedResource />
+      <Router>
+    <div className="App">
+        <header>
+            <Navbar />
+        </header>
+        <Routes>
+            <Route path="/" exact component={Home} />
+        </Routes>
+        <footer>
+            <Footer />
+        </footer>
+    </div>
+</Router>
+    </div>
+    <AuthContext.Provider />
+
+  )
 }
 
 export default App;
