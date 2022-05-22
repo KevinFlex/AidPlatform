@@ -4,13 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { ContextProvider } from './components/Context';
 
 let name = "AidPlatform"
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App name={name} />
+    <ContextProvider>
+      <App name={name} />
+    </ContextProvider>
   </React.StrictMode>
 );
 

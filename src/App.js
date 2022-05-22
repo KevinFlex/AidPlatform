@@ -5,12 +5,14 @@ import React from 'react';
 import './App.css';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import SideBar from './components/SideBar';
 import { Accordion, Card, Button, Navbar } from 'react-bootstrap'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Authentication from './components/authentication';
-import { AuthContext } from './context';
+import Authentication from './components/Authentication';
+import { AuthContext } from './components/Context';
+import AuthenticatedUser from './components/AuthenticatedUser';
+import UnAuthenticatedUser from './components/UnAuthenticatedUser';
+
 
 function App() {
 
@@ -23,27 +25,26 @@ function App() {
   }
 
   return (
+    <AuthContext.Provider value={{ isLoggedIn: isLoggedIn, login: login, logout: logout }}>
 
-    <AuthContext.Provider value={isLoggedIn: isLoggedIn, login: login, logout: logout}>
-      <div class="center">
-      <Authentication />
-      <ProtectedResource />
+
       <Router>
-    <div className="App">
-        <header>
+        <div className="App">
+          <header>
             <Navbar />
-        </header>
-        <Routes>
+          </header>
+          <Routes>
             <Route path="/" exact component={Home} />
-        </Routes>
-        <footer>
+            <Authentication />
+            <AuthenticatedUser />
+            <UnAuthenticatedUser />
+          </Routes>
+          <footer>
             <Footer />
-        </footer>
-    </div>
-</Router>
-    </div>
-    <AuthContext.Provider />
-
+          </footer>
+        </div>
+      </Router>
+    </ AuthContext.Provider >
   )
 }
 

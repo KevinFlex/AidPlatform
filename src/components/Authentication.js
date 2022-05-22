@@ -4,7 +4,8 @@ import { AuthContext } from "./context";
 export default function Authentication() {
     const authContext = useContext(AuthContext); const loginHandler = () => {
         authContext.login();
-    }; const logoutHandler = () => {
+    };
+    const logoutHandler = () => {
         authContext.logout();
     };
 
