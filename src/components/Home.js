@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-import SideBar from './sidebar';
+import SideBar from './Accordion/SideBar';
 
 function HomePage() {
     return (

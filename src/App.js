@@ -8,36 +8,31 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Accordion, Card, Button, Navbar } from 'react-bootstrap'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Authentication from './components/Authentication';
-import { AuthContext } from './components/Context';
-import AuthenticatedUser from './components/AuthenticatedUser';
-import UnAuthenticatedUser from './components/UnAuthenticatedUser';
-
+import { AuthContext } from './components/AuthenticationContext/AuthContext';
+import Home from './components/Home'
+import Footer from './components/Footer'
+import Portal from './components/Portal';
+import { useState } from 'react'
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(false);
-  const login = () => {
-    setLoggedIn(true);
-  }
-  const logout = () => {
-    setLoggedIn(false);
+  const [auth, setAuth] = useState(false)
+  const authToggle = () => {
+    setAuth(!auth)
   }
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn: isLoggedIn, login: login, logout: logout }}>
 
-
+    <AuthContext.Provider value={{ auth, authToggle }}>
       <Router>
         <div className="App">
           <header>
             <Navbar />
           </header>
+          <Portal />
           <Routes>
-            <Route path="/" exact component={Home} />
-            <Authentication />
-            <AuthenticatedUser />
-            <UnAuthenticatedUser />
+
+            <Route path="/" exact component={Portal} />
           </Routes>
           <footer>
             <Footer />
