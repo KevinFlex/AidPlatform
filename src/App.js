@@ -4,7 +4,7 @@ import React from 'react';
 
 import './App.css';
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { Accordion, Card, Button, Navbar } from 'react-bootstrap'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -29,10 +29,14 @@ function App() {
           <header>
             <Navbar />
           </header>
-          <Portal />
           <Routes>
-
-            <Route path="/" exact component={Portal} />
+            <Route path="/" element={
+              auth ? (
+                <Home />
+              ) : (
+                <Portal />
+              )
+            } />
           </Routes>
           <footer>
             <Footer />

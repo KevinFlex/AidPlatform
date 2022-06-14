@@ -3,42 +3,33 @@ import { slide as Menu } from 'react-burger-menu';
 import AccordionList from './AccordionList'
 import AccordionPersoList from './AccordionPersoList'
 import AccordionHistoricList from './AccordionHistoricList'
+import { AuthContext } from '../AuthenticationContext/AuthContext';
 
 
-export default props => {
+function SideBar() {
+
+    if (this.state.auth === true) {
+        const authenticated = true;
+    }
+
     return (
         <Menu>
 
-            <AccordionList />
+            <AuthContext.Provider value={this.state === true}>
+                <AccordionList />
+                <AccordionPersoList />
+                <AccordionHistoricList />
 
-            <AccordionPersoList />
+            </AuthContext.Provider>
 
-            <AccordionHistoricList />
+            <AuthContext.Provider value={this.state === true}>
+                <AccordionList />
 
+            </AuthContext.Provider>
 
-            {/* <a className="menu-item" href="/">
-                Home
-            </a>
-
-            <a className="menu-item" href="/laravel">
-                Laravel
-            </a>
-
-            <a className="menu-item" href="/angular">
-                Angular
-            </a>
-
-            <a className="menu-item" href="/react">
-                React
-            </a>
-
-            <a className="menu-item" href="/vue">
-                Vue
-            </a>
-
-            <a className="menu-item" href="/node">
-                Node
-            </a> */}
         </Menu>
+
     );
 };
+
+export default SideBar;
