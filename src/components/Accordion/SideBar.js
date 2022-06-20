@@ -1,33 +1,30 @@
 import React from 'react';
-import { slide as Menu } from 'react-burger-menu';
 import AccordionList from './AccordionList'
 import AccordionPersoList from './AccordionPersoList'
 import AccordionHistoricList from './AccordionHistoricList'
 import { AuthContext } from '../AuthenticationContext/AuthContext';
+import { slide as Menu } from 'react-burger-menu';
 
 
 function SideBar() {
 
-    if (this.state.auth === true) {
-        const authenticated = true;
-    }
-
     return (
-        <Menu>
+        <AuthContext.Consumer >
 
-            <AuthContext.Provider value={this.state === true}>
-                <AccordionList />
-                <AccordionPersoList />
-                <AccordionHistoricList />
+            {({ auth }) => (
+                <Menu>
+                    {auth
+                        ? <div className=''>
+                            <AccordionPersoList />
+                            <AccordionHistoricList />
+                        </div>
 
-            </AuthContext.Provider>
+                        : <AccordionList />
+                    }
+                </Menu>
+            )}
 
-            <AuthContext.Provider value={this.state === true}>
-                <AccordionList />
-
-            </AuthContext.Provider>
-
-        </Menu>
+        </AuthContext.Consumer>
 
     );
 };

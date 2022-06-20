@@ -37,6 +37,8 @@ function App() {
                 <Portal />
               )
             } />
+
+            <Route exact path='/home' element={< Home />}></Route>
           </Routes>
           <footer>
             <Footer />
