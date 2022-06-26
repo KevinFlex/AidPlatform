@@ -1,12 +1,12 @@
 import React from 'react';
 import '../App.css';
+import Map from './Map'
 import SideBar from './Accordion/SideBar';
 
 function HomePage() {
     return (
         <div>
-            <h1>Welcome to your Aid Platform</h1>
-            <h2>From Neighboors To Neighboors</h2>
+            <Map />
             <SideBar />
         </div>
     );
