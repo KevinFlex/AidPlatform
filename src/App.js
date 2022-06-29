@@ -13,6 +13,8 @@ import Home from './components/Home'
 import Footer from './components/Footer'
 import Portal from './components/Portal';
 import { useState } from 'react'
+import TaskListArray from './components/TaskListArray';
+import Map from './components/Map'
 
 function App() {
 
@@ -39,6 +41,8 @@ function App() {
             } />
 
             <Route exact path='/home' element={< Home />}></Route>
+            <Route exact path='/home' element={< Map taskListArray={TaskListArray} />}></Route>
+
           </Routes>
           <footer>
             <Footer />
