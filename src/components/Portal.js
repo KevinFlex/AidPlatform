@@ -2,6 +2,7 @@ import React from 'react'
 import useInput from './Hooks/InputHook'
 import { useState } from 'react'
 import { AuthContext } from "./AuthenticationContext/AuthContext";
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 function Portal() {
 
@@ -42,45 +43,52 @@ function Portal() {
     }
 
     return (
-        <AuthContext.Consumer >
-            {({ authToggle }) => (
-                <div>
-                    <h1>Welcome to your Aid Platform</h1>
-                    <h2>From Neighboors To Neighboors</h2>
+        <>
+            <AuthContext.Consumer >
+                {({ authToggle }) => (
+                    <div>
+                        <h1>Welcome to your Aid Platform</h1>
+                        <h2>From Neighboors To Neighboors</h2>
 
-                    <form className='form' noValidate onSubmit={(e) => { e.preventDefault(); handleSubmit(authToggle, e.target) }}>
+                        <form className='form' noValidate onSubmit={(e) => { e.preventDefault(); handleSubmit(authToggle, e.target) }}>
 
-                        <label htmlFor="mail" className="form-label">Email
-                        </label>
-                        <input
-                            id="mail"
-                            className="form-control mb-5"
-                            name="mail"
-                            required
-                            type="text"
-                            value={mail}
-                            {...bindMail}
-                        />
-                        <label htmlFor="passWord" className="form-label">PassWord
-                        </label>
-                        <input
-                            id="passWord"
-                            className="form-control mb-5"
-                            name="passWord"
-                            required
-                            type="text"
-                            value={passWord}
-                            {...bindPassWord}
-                        />
+                            <label htmlFor="mail" className="form-label">Email
+                            </label>
+                            <input
+                                id="mail"
+                                className="form-control mb-5"
+                                name="mail"
+                                required
+                                type="text"
+                                value={mail}
+                                {...bindMail}
+                            />
+                            <label htmlFor="passWord" className="form-label">PassWord
+                            </label>
+                            <input
+                                id="passWord"
+                                className="form-control mb-5"
+                                name="passWord"
+                                required
+                                type="text"
+                                value={passWord}
+                                {...bindPassWord}
+                            />
 
 
-                        <button type="submit">submit</button>
+                            <button type="submit">submit</button>
 
-                    </form>
-                </div>
-            )}
-        </AuthContext.Consumer>
+                        </form>
+                    </div>
+                )}
 
+            </AuthContext.Consumer>
+            <div>
+                <Link to="/home">
+                    <button className='mt-3'>Enter As Visitor</button>
+                </Link>
+            </div>
+        </>
     );
 };
 
