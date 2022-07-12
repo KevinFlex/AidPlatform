@@ -40,22 +40,25 @@ function LocationMarker() {
 
 
     return (
-        <MapContainer center={placeholder} zoom={12} scrollWheelZoom={false} style={{ height: "100vh" }}>
-            <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <ZoomControl position="topright" />
-            {data.map((task, index) => {
-                return (
-                    <Marker key={index} className={task.city} position={[task.lat, task.lng]} icon={skater}>
-                        <Popup onClick={() => {
-                            setActiveTask(task);
-                        }}>{task.firstName} {task.lastName}</Popup>
-                    </Marker>
-                )
-            })}
-        </MapContainer>
+        <>
+            <MapContainer center={placeholder} zoom={12} scrollWheelZoom={false} style={{ height: "100vh" }}>
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <ZoomControl position="topright" />
+                {data.map((task, index) => {
+                    return (
+                        <Marker key={index} className={task.city} position={[task.lat, task.lng]} icon={skater}>
+                            <Popup onClick={() => {
+                                setActiveTask(task);
+                            }}>{task.firstName} {task.lastName}</Popup>
+                        </Marker>
+                    )
+                })}
+            </MapContainer>
+            <button className=''><a href='/postTask' className='btn btn-primary text-dark taskAdding'> Add a task</a></button>
+        </>
     )
 
 }

@@ -15,6 +15,7 @@ import Portal from './components/Portal';
 import { useState } from 'react'
 import TaskListArray from './components/TaskListArray';
 import Map from './components/Map'
+import PostTask from './components/PostTask'
 
 function App() {
 
@@ -42,7 +43,7 @@ function App() {
 
             <Route exact path='/home' element={< Home />}></Route>
             <Route exact path='/home' element={< Map taskListArray={TaskListArray} />}></Route>
-
+            <Route path='/postTask' element={< PostTask />}></Route>
           </Routes>
           <footer>
             <Footer />
