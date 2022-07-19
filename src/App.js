@@ -16,6 +16,7 @@ import { useState } from 'react'
 import TaskListArray from './components/TaskListArray';
 import Map from './components/Map'
 import PostTask from './components/PostTask'
+import Message from './components/Message'
 
 function App() {
 
@@ -41,9 +42,10 @@ function App() {
               )
             } />
 
-            <Route exact path='/home' element={< Home />}></Route>
+            <Route exact path='/home' element={< Home taskListArray={TaskListArray} />}></Route>
             <Route exact path='/home' element={< Map taskListArray={TaskListArray} />}></Route>
             <Route path='/postTask' element={< PostTask />}></Route>
+            <Route path={'/request/1/messages'} element={< Message />}></Route>
           </Routes>
           <footer>
             <Footer />

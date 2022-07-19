@@ -6,9 +6,9 @@ import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import { Icon } from "leaflet";
 
 
-function LocationMarker() {
+function LocationMarker(props) {
 
-    const [data, setData] = useState(TaskListArray);
+    // const [data, setData] = useState(TaskListArray);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const placeholder = [40.00, -105.25]
@@ -21,24 +21,6 @@ function LocationMarker() {
     });
 
 
-    // useEffect(() => {
-
-    //     fetch()
-    //         .then(response => {
-    //             if (response.ok) {
-    //                 return response.json();
-    //             }
-    //             throw response;
-    //         })
-
-    //         .then(data => {
-
-    //             console.log(data);
-    //             setData(data);
-    //         });
-    // }, [])
-
-
     return (
         <>
             <MapContainer center={placeholder} zoom={12} scrollWheelZoom={false} style={{ height: "100vh" }}>
@@ -47,12 +29,12 @@ function LocationMarker() {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 <ZoomControl position="topright" />
-                {data.map((task, index) => {
+                {props.map((task, index) => {
                     return (
-                        <Marker key={index} className={task.city} position={[task.lat, task.lng]} icon={skater}>
+                        <Marker key={index} className={task.typeRequest} position={[task.position.lat, task.position.lng]} icon={skater}>
                             <Popup onClick={() => {
                                 setActiveTask(task);
-                            }}>{task.firstName} {task.lastName}</Popup>
+                            }}>{task.title}</Popup>
                         </Marker>
                     )
                 })}

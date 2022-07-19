@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
-
+import SideBar from './Accordion/SideBar';
 
 function Message() {
     const [messages, setMessage] = useState([]);
 
     return (
         <>
+            <SideBar />
+
             <div className='messages'>
                 <div className='message'>
                     <span className='avatar'>S</span>
@@ -19,7 +21,7 @@ function Message() {
 
 
             <form submit='setMessages'>
-                <input type={text}></input>
+                <input placeholder='Type in here'></input>
                 <button type='submit'>Send</button>
 
             </form>
@@ -28,5 +30,6 @@ function Message() {
         </>
 
     )
-
 }
+
+export default Message;

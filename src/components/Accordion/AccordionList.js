@@ -1,4 +1,5 @@
 import React from 'react'
+import Message from '../Message'
 
 function AccordionList() {
 
@@ -6,7 +7,7 @@ function AccordionList() {
     return (
         <ul>
             <li>
-                <a className='menu-item' href="/">
+                <a className='menu-item' href="/message">
                     TAskList1
                 </a>
             </li>
@@ -25,3 +26,5 @@ function AccordionList() {
 };
 
 export default AccordionList;
+
+//retourne une liste de lien par map.id=> message de l'id !
