@@ -14,7 +14,7 @@ import Footer from './components/Footer'
 import Portal from './components/Portal';
 import { useState } from 'react'
 import TaskListArray from './components/TaskListArray';
-import Map from './components/Map'
+import Map from './components/Map/Map'
 import PostTask from './components/PostTask'
 import Message from './components/Message'
 

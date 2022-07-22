@@ -1,27 +1,33 @@
 import React from 'react'
 import Message from '../Message'
+import TaskListArray from '../TaskListArray'
+import { useState } from 'react'
+
 
 function AccordionList() {
 
+    const [data, setData] = useState(TaskListArray);
+
 
     return (
-        <ul>
-            <li>
-                <a className='menu-item' href="/message">
-                    TAskList1
-                </a>
-            </li>
-            <li>
-                <a className='menu-item' href="/">
-                    TAskList2
-                </a>
-            </li>
-            <li>
-                <a className='menu-item' href="/">
-                    TAskList3
-                </a>
-            </li>
-        </ul>
+        <>
+            {data.map((task, index) => {
+                if (task.isPersonal === false) {
+                    return (
+                        <ul>
+                            <li key={index} className="menu-item">
+                                <a className="mb-3 text-light" href="request/{task.id}/messages">
+                                    {task.title}
+                                </a>
+                            </li>
+                        </ul>
+                    )
+                }
+                return null
+
+            })}
+        </>
+
     )
 };
 

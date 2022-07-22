@@ -2,8 +2,9 @@ const TaskListArray = [
     {
         "typeRequest": "Material",
         "title": "Green",
+        "description": "bla bla bla... not happy !",
         "userRequest": "Dustin Green",
-        "isPersonal": true,
+        "isPersonal": false,
         "isFinished": false,
         "TypeTask": "IL",
         position:
@@ -16,10 +17,10 @@ const TaskListArray = [
     {
         "typeRequest": "Material",
         "title": "Green",
+        "description": "bla bla bla... not happy !",
         "userRequest": "Dustin Green",
         "isPersonal": true,
-        "isFinished": false,
-        "TypeTask": "IL",
+        "isFinished": true,
         position:
         {
             "lat": 39.95,
@@ -29,10 +30,10 @@ const TaskListArray = [
     }, {
         "typeRequest": "Material",
         "title": "Green",
+        "description": "bla bla bla... not happy !",
         "userRequest": "Dustin Green",
         "isPersonal": true,
         "isFinished": false,
-        "TypeTask": "IL",
         position:
         {
             "lat": 40.06,
@@ -42,10 +43,10 @@ const TaskListArray = [
     }, {
         "typeRequest": "Material",
         "title": "Green",
+        "description": "bla bla bla... not happy !",
         "userRequest": "Dustin Green",
         "isPersonal": true,
         "isFinished": false,
-        "TypeTask": "IL",
         position:
         {
             "lat": 40.00,
@@ -58,10 +59,10 @@ const TaskListArray = [
     }, {
         "typeRequest": "Material",
         "title": "Green",
+        "description": "bla bla bla... not happy !",
         "userRequest": "Dustin Green",
         "isPersonal": true,
         "isFinished": false,
-        "TypeTask": "IL",
         position:
         {
             "lat": 40.02,
@@ -71,10 +72,10 @@ const TaskListArray = [
     }, {
         "typeRequest": "Material",
         "title": "Green",
+        "description": "bla bla bla... not happy !",
         "userRequest": "Dustin Green",
-        "isPersonal": true,
+        "isPersonal": false,
         "isFinished": false,
-        "TypeTask": "IL",
         position:
         {
             "lat": 39.96,
