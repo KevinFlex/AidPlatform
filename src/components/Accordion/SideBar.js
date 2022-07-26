@@ -14,10 +14,14 @@ function SideBar() {
             {({ auth }) => (
                 <Menu>
                     {auth
-                        ? <div className=''>
-                            <AccordionPersoList />
-                            <AccordionHistoricList />
-                        </div>
+                        ? <>
+                            <div className='mb-5 primary'>
+                                <AccordionPersoList />
+                            </div>
+                            <div className='mb-3 secondary'>
+                                <AccordionHistoricList />
+                            </div>
+                        </>
 
                         : <AccordionList />
                     }

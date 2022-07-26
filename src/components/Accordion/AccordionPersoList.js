@@ -14,13 +14,15 @@ function AccordionPersoList() {
                 if (task.isPersonal === true) {
                     if (task.isFinished === false) {
                         return (
-                            <ul>
-                                <li key={index} className="menu-item">
-                                    <a className="mb-3 text-light" href={request / task.id / messages}>
-                                        {task.title}
-                                    </a>
-                                </li>
-                            </ul>
+                            <div className='mb-2 d-block btn btn-primary'>
+                                <ul>
+                                    <li key={index} className="menu-item">
+                                        <a className="mb-3 text-light" href={request / task.id / messages}>
+                                            {task.title}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         )
                     }
                 }
