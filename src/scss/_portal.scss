@@ -1,0 +1,21 @@
+.portal {
+    .registration {
+        float: left;
+    }
+
+    .heading {
+
+        background-image: url(../../public/Assets/volunteer-services-teamwork.jpg);
+        -webkit-filter: grayscale(80%);
+        /* Safari 6.0 - 9.0 */
+        filter: grayscale(80%);
+    }
+}
+
+@media (min-width: 768px) {
+    .heading {
+        border-bottom-left-radius: 15rem;
+        border-left: 3px solid rgb(41, 41, 41);
+        color: white;
+    }
+}
