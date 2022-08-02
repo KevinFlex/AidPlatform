@@ -1,21 +1,39 @@
 .portal {
     .registration {
         float: left;
+
+
     }
 
     .heading {
         background-repeat: no-repeat;
         background-image: url(../../public/Assets/volunteer-services-teamwork.jpg);
-        -webkit-filter: grayscale(80%);
-        /* Safari 6.0 - 9.0 */
-        filter: grayscale(80%);
-        position: relative;
+        background-size: cover;
+        position: absolute;
         height: 100vh;
         top: 0;
         right: 0;
         clip-path: polygon(7% 0%, 100% 0%, 100% 100%, 0% 100%);
-        z-index: 0;
-        color: rgb(11, 94, 215);
+        z-index: 2;
+        color: white;
+
+        &__title {
+            display: block;
+            text-align: center;
+            font-weight: 600 !important;
+
+        }
+
+        // ::before {
+        //     display: block;
+        //     content: "";
+        //     position: absolute;
+        //     top: 0;
+        //     left: 0;
+        //     right: 0;
+        //     bottom: 17px;
+        //     background-color: rgba(0, 0, 0, .08);
+        // }
     }
 }
 

@@ -3,10 +3,12 @@ const TaskListArray = [
         "typeRequest": "Material",
         "title": "Green",
         "description": "bla bla bla... not happy !",
-        "userRequest": "Dustin Green",
+        // "userRequest": "Dustin Green",
         "isPersonal": false,
         "isFinished": false,
         "TypeTask": "IL",
+        "creationTime": 20220610,
+        "publicationTime": 20220611,
         position:
         {
             "lat": 40.00,
