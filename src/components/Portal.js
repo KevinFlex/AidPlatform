@@ -3,6 +3,7 @@ import useInput from './Hooks/InputHook'
 import { useState } from 'react'
 import { AuthContext } from "./AuthenticationContext/AuthContext";
 import { BrowserRouter as Router, Link } from 'react-router-dom';
+import logo from '../../src/logo.png'
 
 function Portal() {
 
@@ -93,15 +94,16 @@ function Portal() {
                     <h1>Welcome to your Aid Platform</h1>
                     <h2>From Neighboors To Neighboors</h2>
                     <div className='bg-img bg-portal realtive backgound-center'>
-                        <div className='logo absolute top-0 right-0'><img src='../../public/logo.png'></img></div>
-                        <div className='max-w-md mx-auto'>
-                            <div className='mb-8 text-4xl md:text-5xl font-heading font-bold md:leading-900'></div>
+                        <div className='logo absolute top-0 right-0'>
+                            <a href="/"><img src="..\logo.png" width="90" height="120" alt="logo" className='my-3 logo__img' /></a></div>
+                        <div className='my-5 p-3'>
                             <Link to="/home">
-                                <button className='btn btn-secondary'>Enter As Visitor</button>
+                                <button className='btn btn-primary'>Enter As Visitor</button>
                             </Link>
                         </div>
                     </div>
-                </div></div>
+                </div>
+            </div>
         </div>
 
         </>
