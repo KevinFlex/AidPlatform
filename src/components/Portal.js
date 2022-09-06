@@ -25,16 +25,21 @@ function Portal() {
         else {
             const data = { mail, passWord };
 
-            fetch('', {
+            fetch('/users', {
+                method: 'POST',
+                body: JSON.stringify(data),
                 headers: {
+                    Cookie: 'xxx=yyy',
                     'Content-Type': 'application/json'
                 }
             })
-                .then(data => {
-                    console.log(data);
+                .then(data => data.json())
+                .catch(response => {
+                    console.log(response);
                     resetPassWord();
                     resetMail();
                     authToggle();
+
                 })
 
 
