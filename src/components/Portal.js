@@ -21,20 +21,24 @@ function Portal() {
             alert('Submitting error, all inputs required');
             form.classList.add('was-validated')
 
+
         }
         else {
             const data = { mail, passWord };
 
-            fetch('/users', {
+            fetch('/login', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
-                    Cookie: 'xxx=yyy',
                     'Content-Type': 'application/json'
                 }
             })
                 .then(data => data.json())
                 .catch(response => {
+
+
+                    //CHECKING THE USER EXISTS ?!!?!?!?!?!?!!?!?!!?!?!
+
                     console.log(response);
                     resetPassWord();
                     resetMail();

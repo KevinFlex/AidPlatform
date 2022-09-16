@@ -1,118 +1,106 @@
-import React, { useEffect } from 'react'
+import React, { Component } from "react";
 import useInput from './Hooks/InputHook'
 import { useState } from 'react'
+import { AuthContext } from "./AuthenticationContext/AuthContext";
 
-function PostTask() {
-    const { value: taskType, bind: bindTaskType, reset: resetTaskType } = useInput('');
-    const { value: taskTitle, bind: bindTaskTitle, reset: resetTaskTitle } = useInput('');
-    const { value: taskDescription, bind: bindTaskDescription, reset: resetTaskDescription } = useInput('');
-    const { value: location, bind: bindLocation, reset: resetLocation } = useInput('');
+import FileUploader from './FileUploader'
+
+
+function NewAccount() {
+
+    const { value: firstName, bind: bindFirstName, reset: resetFirstName } = useInput('');
+    const { value: lastName, bind: bindLastName, reset: resteLastName } = useInput('');
+    const { value: passWord, bind: bindPassWord, reset: resetPassWord } = useInput('');
+    const { value: mail, bind: bindMail, reset: resetMail } = useInput('');
 
     const [validated, setValidated] = useState(false);
 
+    const [file, setFile] = useState()
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    const handleSubmit = (authToggle, form) => {
 
-        const form = event.currentTarget;
         if (form.checkValidity() === false) {
-
-            event.stopPropagation();
 
             alert('Submitting error, all inputs required');
             form.classList.add('was-validated')
-
         }
         else {
+            const data = { firstName, lastName, mail, passWord };
 
-            const data = { taskType, taskTitle, taskDescription, location };
-
-            fetch('', {
+            fetch('/users', {
                 method: 'POST',
+                body: JSON.stringify(data),
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(data)
             })
-                .then(response => {
-                    if (response.status >= 400) {
-                        alert("Your task description must be less than 200 characters")
-                    }
-                    else {
-                        alert("Your task has been submitted !")
-                        response.json()
-                    }
+                .then(data => data.json())
+                .catch(response => {
+
+
+                    console.log(response);
+                    resetFirstName();
+                    resteLastName();
+                    resetPassWord();
+                    resetMail();
+                    authToggle();
+
                 })
-                .then(data => {
-                    console.log(data);
-                })
-            resetTaskType();
-            resetTaskTitle();
-            resetTaskDescription();
-            resetLocation();
+
+
             form.classList.remove('was-validated')
 
         }
         setValidated(true);
-
     }
+
+
     return (
-        <form className='form' noValidate onSubmit={handleSubmit}>
-            <label htmlFor='taskType' className="form-label mt-5">Type of the task :
-            </label>
-            <select
-                id="taskType"
-                className="form-control mb-5"
-                name="taskType"
-                required
-                type="select"
-                value={taskType}
-                {...bindTaskType}>
+        <div className="row">
+            <div className="col-md-3 col-0"></div>
+            <AuthContext.Consumer >
+                {({ authToggle }) => (
+                    <div className="col-md-6 col-12">
+                        <form className='form mb-3' noValidate onSubmit={(e) => { e.preventDefault(); handleSubmit(authToggle, e.target) }}>
+                            <h3>Register</h3>
 
-                <option value="material">Material Need</option>
-                <option value="help">help</option></select>
+                            <div className="form-group mt-3">
+                                <label>First name</label>
+                                <input type="text" className="form-control" placeholder="First name" value={firstName} {...bindFirstName} />
+                            </div>
 
+                            <div className="form-group mt-3">
+                                <label>Last name</label>
+                                <input type="text" className="form-control" placeholder="Last name" value={lastName} {...bindLastName} />
+                            </div>
 
-            <label htmlFor="taskTitle" className="form-label">Title :
-            </label>
-            <input
-                id="taskTitle"
-                className="form-control mb-5"
-                name="taskTitle"
-                required
-                type="text"
-                value={taskTitle}
-                {...bindTaskTitle}
-            />
+                            <div className="form-group mt-3">
+                                <label>Email</label>
+                                <input type="email" className="form-control" placeholder="Enter email" value={mail} {...bindMail} />
+                            </div>
 
-            <label htmlFor="mail" className="form-label">Description :
-            </label>
-            <input
-                id="taskDescription"
-                maxLength="200"
-                className="form-control mb-5"
-                name="taskDescription"
-                required
-                type="text"
-                value={taskDescription}
-                {...bindTaskDescription}
-            />
+                            <div className="form-group mt-3">
+                                <label>Password</label>
+                                <input type="password" className="form-control" placeholder="Enter password" value={passWord} {...bindPassWord} />
+                            </div>
+                            <div className="m-3">
+                                <FileUploader file={setFile} />
+                            </div>
 
-            <label htmlFor="location" className="form-label">Location :
-            </label>
-            <input
-                id="location"
-                className="form-control mb-5"
-                name="location"
-                required
-                type="text"
-                value={location}
-                {...bindLocation}
-            />
-            <input className="btn-success mb-5 px-3 rounded mt-3" type="submit" value="Send"  {...handleSubmit} />
-        </form>
+                            <button type="submit" className="btn btn-success m-3 btn-lg btn-block" onClick={() => handleSubmit()}>Register</button>
+                            <p className="forgot-password text-right">
+                                Already registered <a href="/">log in?</a>
+                            </p>
+                        </form>
+                    </div>
+                )}
+            </AuthContext.Consumer>
+
+            <div className="col-md-3 col-0"></div>
+        </div>
 
     );
 }
 
-export default PostTask;
+
+export default NewAccount;

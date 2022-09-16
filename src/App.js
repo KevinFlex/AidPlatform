@@ -18,6 +18,7 @@ import Map from './components/Map/Map'
 import PostTask from './components/PostTask'
 import Message from './components/Message'
 import NewAccount from './components/NewAccount'
+import setFile from './components/FileUploader'
 
 function App() {
 
@@ -45,7 +46,7 @@ function App() {
 
             <Route exact path='/home' element={< Home taskListArray={TaskListArray} />}></Route>
             <Route exact path='/home' element={< Map taskListArray={TaskListArray} />}></Route>
-            <Route exact path='/newUser' element={< NewAccount />}></Route>
+            <Route exact path='/newUser' element={< NewAccount file={setFile} />}></Route>
             <Route path='/postTask' element={< PostTask />}></Route>
             <Route path={'/request/1/messages'} element={< Message />}></Route>
           </Routes>
