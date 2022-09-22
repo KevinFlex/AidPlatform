@@ -37,7 +37,6 @@ function Portal() {
                 .catch(response => {
 
 
-                    //CHECKING THE USER EXISTS ?!!?!?!?!?!?!!?!?!!?!?!
 
                     console.log(response);
                     resetPassWord();

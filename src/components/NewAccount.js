@@ -18,6 +18,7 @@ function NewAccount() {
     const [file, setFile] = useState()
 
     const handleSubmit = (authToggle, form) => {
+        console.log(authToggle, form)
 
         if (form.checkValidity() === false) {
 
@@ -25,13 +26,20 @@ function NewAccount() {
             form.classList.add('was-validated')
         }
         else {
-            const data = { firstName, lastName, mail, passWord };
+
+            const formData = new FormData();
+            formData.append('firstName', firstName)
+            formData.append('lastName', lastName)
+            formData.append('mail', mail)
+            formData.append('password', passWord)
+            formData.append('file', file)
+
 
             fetch('/users', {
                 method: 'POST',
-                body: JSON.stringify(data),
+                body: formData,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'multipart/form-data'
                 },
             })
                 .then(data => data.json())
@@ -87,7 +95,7 @@ function NewAccount() {
                                 <FileUploader file={setFile} />
                             </div>
 
-                            <button type="submit" className="btn btn-success m-3 btn-lg btn-block" onClick={() => handleSubmit()}>Register</button>
+                            <button type="submit" className="btn btn-success m-3 btn-lg btn-block">Register</button>
                             <p className="forgot-password text-right">
                                 Already registered <a href="/">log in?</a>
                             </p>

@@ -13,6 +13,9 @@ function PersonalMap() {
         iconSize: [25, 40]
     });
 
+    function onClick(e) {
+        alert(e.latlng);
+    }
     const [activeTask, setActiveTask] = useState(null);
 
     return (

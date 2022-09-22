@@ -46,7 +46,7 @@ function App() {
 
             <Route exact path='/home' element={< Home taskListArray={TaskListArray} />}></Route>
             <Route exact path='/home' element={< Map taskListArray={TaskListArray} />}></Route>
-            <Route exact path='/newUser' element={< NewAccount {...this.props} file={setFile} />}></Route>
+            <Route exact path='/newUser' element={< NewAccount file={setFile} />}></Route>
             <Route path='/postTask' element={< PostTask />}></Route>
             <Route path={'/request/1/messages'} element={< Message />}></Route>
           </Routes>

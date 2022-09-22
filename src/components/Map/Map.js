@@ -20,7 +20,7 @@ function Map() {
         <>
             <AuthContext.Consumer >
                 {({ auth }) => (
-                    <MapContainer center={placeholder} zoom={12} scrollWheelZoom={false} style={{ height: "100vh" }}>
+                    <MapContainer center={placeholder} zoom={12} scrollWheelZoom={true} style={{ height: "100vh" }}>
                         <TileLayer
                             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
