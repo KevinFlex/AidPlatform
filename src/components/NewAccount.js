@@ -35,7 +35,7 @@ function NewAccount() {
             formData.append('file', file)
 
 
-            fetch('/users', {
+            fetch('/api/users', {
                 method: 'POST',
                 body: formData,
                 headers: {
@@ -47,11 +47,11 @@ function NewAccount() {
 
 
                     console.log(response);
-                    resetFirstName();
-                    resteLastName();
-                    resetPassWord();
-                    resetMail();
-                    authToggle();
+                    // resetFirstName();
+                    // resteLastName();
+                    // resetPassWord();
+                    // resetMail();
+                    // authToggle();
 
                 })
 

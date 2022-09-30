@@ -1,11 +1,11 @@
 import React from 'react'
-import TaskListArray from './TaskListArray'
+import RequestListArray from './RequestListArray'
 import { useState, useEffect } from 'react'
 
 
 function Counter() {
 
-    const [data, setData] = useState(TaskListArray);
+    const [data, setData] = useState(RequestListArray);
     let counter = 0;
 
     useEffect(() => {
@@ -35,12 +35,12 @@ function Counter() {
         //   if (error) return "Error!";
         //   if (data)
 
-        data.map((task, index) => {
-            if (task.length === index) {
+        data.map((request, index) => {
+            if (request.length === index) {
                 return counter;
             }
             else {
-                if (task.isFinished === false) {
+                if (request.isFinished === false) {
                     counter++;
                     index++;
                 }

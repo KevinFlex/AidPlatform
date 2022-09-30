@@ -26,7 +26,7 @@ function Portal() {
         else {
             const data = { mail, passWord };
 
-            fetch('/login', {
+            fetch('/api/login', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
@@ -110,7 +110,7 @@ function Portal() {
                     <img src="" width="90" height="120" alt="logo" className='my-3 logo__img' />
                     <Counter />
                     <div className='my-5 p-3'>
-                        <Link to="/home">
+                        <Link to="/homeVisiting">
                             <button className='btn btn-primary'>Enter As Visitor</button>
                         </Link>
                     </div>

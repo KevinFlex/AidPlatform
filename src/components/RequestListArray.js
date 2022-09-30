@@ -1,4 +1,4 @@
-const TaskListArray = [
+const RequestListArray = [
     {
         "typeRequest": "Material",
         "title": "Green",
@@ -86,4 +86,4 @@ const TaskListArray = [
 
     }
 ];
-export default TaskListArray;
+export default RequestListArray;

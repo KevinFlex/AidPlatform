@@ -1,29 +1,29 @@
 import React, { useState } from 'react'
 import { Marker, Popup } from 'react-leaflet'
-import TaskListArray from '../TaskListArray'
+import RequestListArray from '../RequestListArray'
 import 'leaflet/dist/leaflet.css'
 import markerIconPng from "leaflet/dist/images/marker-icon.png"
 import { Icon } from "leaflet"
 
 function PersonalMap() {
 
-    const [data, setData] = useState(TaskListArray)
+    const [data, setData] = useState(RequestListArray)
     const skater = new Icon({
         iconUrl: markerIconPng,
         iconSize: [25, 40]
     });
 
-    const [activeTask, setActiveTask] = useState(null);
+    const [activeRequest, setActiveRequest] = useState(null);
 
     return (
         <>
-            {data.map((task, index) => {
-                if (task.isPersonal === false) {
+            {data.map((request, index) => {
+                if (request.isPersonal === false) {
                     return (
-                        <Marker key={index} className={task.typeRequest} position={[task.position.lat, task.position.lng]} icon={skater}>
+                        <Marker key={index} className={request.typeRequest} position={[request.position.lat, request.position.lng]} icon={skater}>
                             <Popup onClick={() => {
-                                setActiveTask(task);
-                            }}>{task.title}</Popup>
+                                setActiveRequest(request);
+                            }}>{request.title}</Popup>
                         </Marker>
                     )
                 }

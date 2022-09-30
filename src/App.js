@@ -4,16 +4,17 @@ import React from 'react';
 
 import './App.css';
 
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import { Accordion, Card, Button, Navbar } from 'react-bootstrap'
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { AuthContext } from './components/AuthenticationContext/AuthContext';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { AuthContext } from './components/AuthenticationContext/AuthContext'
 import Home from './components/Home'
+import HomeVisitingPage from './components/HomeVisiting';
 import Footer from './components/Footer'
-import Portal from './components/Portal';
+import Portal from './components/Portal'
 import { useState } from 'react'
-import TaskListArray from './components/TaskListArray';
+import RequestListArray from './components/RequestListArray'
 import Map from './components/Map/Map'
 import PostTask from './components/PostTask'
 import Message from './components/Message'
@@ -36,7 +37,7 @@ function App() {
             <Navbar />
           </header>
           <Routes>
-            <Route path="/" element={
+            <Route exact path='/' element={
               auth ? (
                 <Home />
               ) : (
@@ -44,8 +45,10 @@ function App() {
               )
             } />
 
-            <Route exact path='/home' element={< Home taskListArray={TaskListArray} />}></Route>
-            <Route exact path='/home' element={< Map taskListArray={TaskListArray} />}></Route>
+            <Route exact path='/home' element={< Home requestListArray={RequestListArray} />}></Route>
+            <Route exact path='/home' element={< Map requestListArray={RequestListArray} />}></Route>
+            <Route exact path='/homeVisiting' element={< HomeVisitingPage requestListArray={RequestListArray} />}></Route>
+            <Route exact path='/homeVisiting' element={< Map requestListArray={RequestListArray} />}></Route>
             <Route exact path='/newUser' element={< NewAccount file={setFile} />}></Route>
             <Route path='/postTask' element={< PostTask />}></Route>
             <Route path={'/request/1/messages'} element={< Message />}></Route>

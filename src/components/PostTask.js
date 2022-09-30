@@ -29,10 +29,10 @@ function PostTask() {
 
             fetch('', {
                 method: 'POST',
+                // body: formData,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'multipart/form-data'
                 },
-                body: JSON.stringify(data)
             })
                 .then(response => {
                     if (response.status >= 400) {
