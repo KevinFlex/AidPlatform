@@ -7,6 +7,8 @@ import { useState } from 'react'
 function AccordionList() {
 
     const [data, setData] = useState(RequestListArray);
+    const [modalVisible, setModalVisible] = useState(false);
+
 
 
     return (
@@ -16,7 +18,10 @@ function AccordionList() {
                     return (
                         <ul>
                             <li key={index} className="menu-item">
-                                <a className="mb-3 text-light" href="request/{task.id}/messages">
+                                <a className="mb-3 text-light" onClick={(event) => {
+                                    event.preventDefault();
+                                    setModalVisible(true);
+                                }} href="/">
                                     {request.title}
                                 </a>
                             </li>

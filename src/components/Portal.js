@@ -24,14 +24,13 @@ function Portal() {
 
         }
         else {
-            const data = { mail, passWord };
+            const formData = new FormData();
+            formData.append('mail', mail)
+            formData.append('password', passWord)
 
             fetch('/api/login', {
                 method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+                body: formData
             })
                 .then(data => data.json())
                 .catch(response => {
@@ -110,7 +109,7 @@ function Portal() {
                     <img src="" width="90" height="120" alt="logo" className='my-3 logo__img' />
                     <Counter />
                     <div className='my-5 p-3'>
-                        <Link to="/homeVisiting">
+                        <Link to="/home">
                             <button className='btn btn-primary'>Enter As Visitor</button>
                         </Link>
                     </div>

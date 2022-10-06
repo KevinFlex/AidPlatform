@@ -37,21 +37,18 @@ function NewAccount() {
 
             fetch('/api/users', {
                 method: 'POST',
-                body: formData,
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                },
+                body: formData
             })
                 .then(data => data.json())
                 .catch(response => {
 
 
                     console.log(response);
-                    // resetFirstName();
-                    // resteLastName();
-                    // resetPassWord();
-                    // resetMail();
-                    // authToggle();
+                    resetFirstName();
+                    resteLastName();
+                    resetPassWord();
+                    resetMail();
+                    authToggle();
 
                 })
 

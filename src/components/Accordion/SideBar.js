@@ -10,24 +10,20 @@ function SideBar() {
 
     return (
         <AuthContext.Consumer >
+            <Menu>
+                {auth => auth
+                    ? <>
+                        <div className='mb-5 primary'>
+                            <AccordionPersoList />
+                        </div>
+                        <div className='mb-3 secondary'>
+                            <AccordionHistoricList />
+                        </div>
+                    </>
 
-            {({ auth }) => (
-                <Menu>
-                    {auth
-                        ? <>
-                            <div className='mb-5 primary'>
-                                <AccordionPersoList />
-                            </div>
-                            <div className='mb-3 secondary'>
-                                <AccordionHistoricList />
-                            </div>
-                        </>
-
-                        : <AccordionList />
-                    }
-                </Menu>
-            )}
-
+                    : <AccordionList />
+                }
+            </Menu>
         </AuthContext.Consumer>
 
     );

@@ -47,8 +47,7 @@ function App() {
 
             <Route exact path='/home' element={< Home requestListArray={RequestListArray} />}></Route>
             <Route exact path='/home' element={< Map requestListArray={RequestListArray} />}></Route>
-            <Route exact path='/homeVisiting' element={< HomeVisitingPage requestListArray={RequestListArray} />}></Route>
-            <Route exact path='/homeVisiting' element={< Map requestListArray={RequestListArray} />}></Route>
+
             <Route exact path='/newUser' element={< NewAccount file={setFile} />}></Route>
             <Route path='/postTask' element={< PostTask />}></Route>
             <Route path={'/request/1/messages'} element={< Message />}></Route>

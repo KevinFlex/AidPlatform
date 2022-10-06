@@ -10,7 +10,7 @@ function AccordionPersoList() {
 
     return (
         <>
-            {data.map((task, index) => {
+            {data.map((request, index) => {
                 if (request.isPersonal === true) {
                     if (request.isFinished === false) {
                         return (
