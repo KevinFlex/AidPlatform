@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import useInput from './Hooks/InputHook'
 import { useState } from 'react'
-import { AuthContext } from "./AuthenticationContext/AuthContext";
+import { AuthContext } from "./AuthenticationContext/AuthContext"
+import { BrowserRouter, BrowserRouter as Router, Link } from 'react-router-dom';
+import Cookies from 'js-cookie'
+
+
 
 import FileUploader from './FileUploader'
 
@@ -12,6 +16,8 @@ function NewAccount() {
     const { value: lastName, bind: bindLastName, reset: resteLastName } = useInput('');
     const { value: passWord, bind: bindPassWord, reset: resetPassWord } = useInput('');
     const { value: mail, bind: bindMail, reset: resetMail } = useInput('');
+
+    const [data, setData] = useState([]);
 
     const [validated, setValidated] = useState(false);
 
@@ -39,24 +45,32 @@ function NewAccount() {
                 method: 'POST',
                 body: formData
             })
-                .then(data => data.json())
-                .catch(response => {
-
-
-                    console.log(response);
+                .then(data => {
+                    return data.json();
+                })
+                .then(data => {
                     resetFirstName();
                     resteLastName();
                     resetPassWord();
                     resetMail();
                     authToggle();
+                    Cookies.set('token', data.token);
+                    setData([data.user.firstName, data.user.lastName]);
+                })
+                .catch(response => {
+
+
+                    console.log(response);
 
                 })
 
 
             form.classList.remove('was-validated')
+            setValidated(true);
+            return <BrowserRouter to='/home' />
+
 
         }
-        setValidated(true);
     }
 
 

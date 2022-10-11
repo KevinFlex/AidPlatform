@@ -2,7 +2,7 @@ import React from 'react'
 import useInput from './Hooks/InputHook'
 import { useState } from 'react'
 import { AuthContext } from "./AuthenticationContext/AuthContext";
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter, BrowserRouter as Router, Link } from 'react-router-dom';
 import logo from '../../src/logo.png'
 import Counter from './Counter';
 
@@ -42,13 +42,15 @@ function Portal() {
                     resetMail();
                     authToggle();
 
+
+
                 })
 
 
             form.classList.remove('was-validated')
-
+            setValidated(true);
+            return <BrowserRouter to='/home' />
         }
-        setValidated(true);
     }
 
     return (
