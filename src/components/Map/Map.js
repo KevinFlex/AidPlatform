@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { MapContainer, TileLayer, ZoomControl } from 'react-leaflet'
+import { Geolocation } from 'react-leaftlet'
 import 'leaflet/dist/leaflet.css';
 import PersonalMap from './PersonalMap'
 import GlobalMap from './GlobalMap'
@@ -12,12 +13,17 @@ function Map() {
     const [error, setError] = useState(null);
     const [locationMe, setLocationMe] = useState([40.00, -105.25]);
 
+    Geolocation.getCurrentPosition(onSuccess);
+
     const onSuccess = location => {
+        locationMe = location.currentposition;
         setLocationMe(
             [
-                location.coords.latitude,
-                location.coords.longitude,
+                location.currentposition.latitude,
+                location.currentposition.longitude,
             ])
+
+        console.log()
     }
 
     useEffect(() => {

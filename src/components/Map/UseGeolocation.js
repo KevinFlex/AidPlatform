@@ -1,41 +1,34 @@
 import { useEffect, useState } from 'react'
 
-const UseGeolocation = () => {
-
-    const [timeLeft, setTimeLeft] = useState(null);
-    const [location, setLocation] = useState({
-        loaded: false,
-        coordinates: { lat: "", lng: "" },
-    });
-
-    const onSuccess = location => {
-        setLocation({
-            loaded: true,
-            coordinates: {
-                lat: location.coords.latitude,
-                lng: location.coords.longitude,
-            },
-        });
-    };
-
-    const onError = error => {
-        setLocation({
-            loaded: true,
-            error,
-        });
-    }
+function UseGeolocation() {
+    const [latLng, setLatLng] = useState([0, 0]);
 
     useEffect(() => {
-        if (!("geolocation" in navigator)) {
-            onError({
-                code: 0,
-                message: "Geolocation not supported",
-            });
+        const options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0,
+        };
+
+        function success(pos) {
+            const crd = pos.coords;
+
+            console.log('Your current position is:');
+            console.log(`Latitude : ${crd.latitude}`);
+            console.log(`Longitude: ${crd.longitude}`);
+            console.log(`More or less ${crd.accuracy} meters.`);
+            // set cords
+            setLatLng([crd.latitude, crd.longitude]);
         }
 
-        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        function error(err) {
+            console.warn(`ERROR(${err.code}): ${err.message}`);
+        }
+
+        navigator.geolocation.getCurrentPosition(success, error, options);
     }, []);
 
 }
+
 
 export default UseGeolocation;

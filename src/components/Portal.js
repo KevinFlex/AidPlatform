@@ -5,6 +5,8 @@ import { AuthContext } from "./AuthenticationContext/AuthContext";
 import { BrowserRouter, BrowserRouter as Router, Link } from 'react-router-dom';
 import logo from '../../src/logo.png'
 import Counter from './Counter';
+import Cookies from 'js-cookie'
+
 
 function Portal() {
 
@@ -12,6 +14,7 @@ function Portal() {
     const { value: mail, bind: bindMail, reset: resetMail } = useInput('');
 
     const [validated, setValidated] = useState(false);
+    const [data, setData] = useState([]);
 
 
     const handleSubmit = (authToggle, form) => {
@@ -32,24 +35,25 @@ function Portal() {
                 method: 'POST',
                 body: formData
             })
-                .then(data => data.json())
-                .catch(response => {
-
-
-
-                    console.log(response);
+                .then(data => {
+                    return data.json();
+                })
+                .then(data => {
                     resetPassWord();
                     resetMail();
                     authToggle();
+                    Cookies.set('token', data.token);
+                    setData([data.user.firstName, data.user.lastName]);
+                    console.log(setData);
 
-
-
+                    setValidated(true);
+                    return <BrowserRouter to='/home' />
+                })
+                .catch(response => {
+                    console.log(response);
                 })
 
-
             form.classList.remove('was-validated')
-            setValidated(true);
-            return <BrowserRouter to='/home' />
         }
     }
 

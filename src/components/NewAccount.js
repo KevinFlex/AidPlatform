@@ -56,6 +56,7 @@ function NewAccount() {
                     authToggle();
                     Cookies.set('token', data.token);
                     setData([data.user.firstName, data.user.lastName]);
+                    console.log(setData);
                 })
                 .catch(response => {
 
