@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import useInput from './Hooks/InputHook'
 import { useState } from 'react'
+import Cookies from 'js-cookie';
+import UseGeolocation from './Map/UseGeolocation'
 
 function PostTask() {
-    const { value: taskType, bind: bindTaskType, reset: resetTaskType } = useInput('');
-    const { value: taskTitle, bind: bindTaskTitle, reset: resetTaskTitle } = useInput('');
-    const { value: taskDescription, bind: bindTaskDescription, reset: resetTaskDescription } = useInput('');
-    const { value: location, bind: bindLocation, reset: resetLocation } = useInput('');
+    const { value: type, bind: bindType, reset: resetType } = useInput('');
+    const { value: title, bind: bindTitle, reset: resetTitle } = useInput('');
+    const { value: description, bind: bindDescription, reset: resetDescription } = useInput('');
 
     const [validated, setValidated] = useState(false);
 
@@ -25,14 +26,20 @@ function PostTask() {
         }
         else {
 
-            const data = { taskType, taskTitle, taskDescription, location };
+            const formData = new FormData();
+            formData.append('title', title)
+            formData.append('description', description)
+            formData.append('type', type)
+            formData.append('lat', lat)
+            formData.append('lng', lng)
 
-            fetch('', {
+            fetch('/api/request', {
                 method: 'POST',
-                // body: formData,
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + Cookies.get('token')
                 },
+                body: formData
             })
                 .then(response => {
                     if (response.status >= 400) {
@@ -46,10 +53,9 @@ function PostTask() {
                 .then(data => {
                     console.log(data);
                 })
-            resetTaskType();
-            resetTaskTitle();
-            resetTaskDescription();
-            resetLocation();
+            resetType();
+            resetTitle();
+            resetDescription();
             form.classList.remove('was-validated')
 
         }
@@ -58,47 +64,49 @@ function PostTask() {
     }
     return (
         <form className='form' noValidate onSubmit={handleSubmit}>
-            <label htmlFor='taskType' className="form-label mt-5">Type of the task :
+            <label htmlFor='type' className="form-label mt-5">Type of the task :
             </label>
             <select
-                id="taskType"
+                id="type"
                 className="form-control mb-5"
-                name="taskType"
+                name="type"
                 required
                 type="select"
-                value={taskType}
-                {...bindTaskType}>
+                value={type}
+                {...bindType}>
 
                 <option value="material">Material Need</option>
                 <option value="help">help</option></select>
 
 
-            <label htmlFor="taskTitle" className="form-label">Title :
+            <label htmlFor="title" className="form-label">Title :
             </label>
             <input
-                id="taskTitle"
+                id="title"
                 className="form-control mb-5"
-                name="taskTitle"
+                name="title"
                 required
                 type="text"
-                value={taskTitle}
-                {...bindTaskTitle}
+                value={title}
+                {...bindTitle}
             />
 
             <label htmlFor="mail" className="form-label">Description :
             </label>
             <input
-                id="taskDescription"
+                id="description"
                 maxLength="200"
                 className="form-control mb-5"
-                name="taskDescription"
+                name="description"
                 required
                 type="text"
-                value={taskDescription}
-                {...bindTaskDescription}
+                value={description}
+                {...bindDescription}
             />
 
-            <label htmlFor="location" className="form-label">Location :
+
+
+            {/* <label htmlFor="location" className="form-label">Location :
             </label>
             <input
                 id="location"
@@ -108,7 +116,7 @@ function PostTask() {
                 type="text"
                 value={location}
                 {...bindLocation}
-            />
+            /> */}
             <input className="btn-success mb-5 px-3 rounded mt-3" type="submit" value="Send"  {...handleSubmit} />
         </form>
 
