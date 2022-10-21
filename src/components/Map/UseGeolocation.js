@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useMapEvents } from 'react-leaflet'
+import PostRequest from './../PostRequest';
+import { Link } from 'react-router-dom'
 
 function UseGeolocation() {
 
-    const [latLng, setLatLng] = useState(null);
+    const [latlng, setLatLng] = useState(null);
 
     const map = useMapEvents({
         click() {
@@ -15,8 +17,15 @@ function UseGeolocation() {
         },
     })
 
+    console.log(latlng)
 
 
+    return (
+
+        <Link className='request__new-btn' to='/postRequest' state={{ setLatLng: latlng }}>
+            New Request
+        </Link>
+    );
 }
 
 

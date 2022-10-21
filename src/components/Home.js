@@ -10,6 +10,7 @@ import { slide as Menu } from 'react-burger-menu';
 import 'leaflet/dist/leaflet.css';
 
 
+
 function HomePage() {
     const [data, setData] = useState(RequestListArray);
     const myTaskMenu = <SideBar requestList={RequestListArray} />;
@@ -28,6 +29,7 @@ function HomePage() {
             </Menu>
 
             <Map />
+
         </>
 
     );

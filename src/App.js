@@ -10,13 +10,12 @@ import { Accordion, Card, Button, Navbar } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { AuthContext } from './components/AuthenticationContext/AuthContext'
 import Home from './components/Home'
-import HomeVisitingPage from './components/HomeVisiting';
 import Footer from './components/Footer'
 import Portal from './components/Portal'
 import { useState } from 'react'
 import RequestListArray from './components/RequestListArray'
 import Map from './components/Map/Map'
-import PostTask from './components/PostTask'
+import PostRequest from './components/PostRequest'
 import Message from './components/Message'
 import NewAccount from './components/NewAccount'
 import setFile from './components/FileUploader'
@@ -49,7 +48,7 @@ function App() {
             <Route exact path='/home' element={< Map requestListArray={RequestListArray} />}></Route>
 
             <Route exact path='/newUser' element={< NewAccount file={setFile} />}></Route>
-            <Route path='/postTask' element={< PostTask />}></Route>
+            <Route path='/postRequest' element={< PostRequest />}></Route>
             <Route path={'/request/1/messages'} element={< Message />}></Route>
           </Routes>
           <footer>

@@ -3,13 +3,21 @@ import useInput from './Hooks/InputHook'
 import { useState } from 'react'
 import Cookies from 'js-cookie';
 import UseGeolocation from './Map/UseGeolocation'
+import { useLocation } from 'react-router-dom'
 
-function PostTask() {
-    const { value: type, bind: bindType, reset: resetType } = useInput('');
+
+function PostRequest() {
+    const { value: need, bind: bindNeed, reset: resetNeed } = useInput("material");
     const { value: title, bind: bindTitle, reset: resetTitle } = useInput('');
     const { value: description, bind: bindDescription, reset: resetDescription } = useInput('');
+    const { value: lat, bind: bindLat, reset: resetLat } = useInput('');
+    const { value: lng, bind: bindLng, reset: resetLng } = useInput('');
 
     const [validated, setValidated] = useState(false);
+
+    const location = useLocation()
+    const { setLatLng } = location.state
+    console.log(setLatLng);
 
 
     const handleSubmit = (event) => {
@@ -29,11 +37,11 @@ function PostTask() {
             const formData = new FormData();
             formData.append('title', title)
             formData.append('description', description)
-            formData.append('type', type)
-            formData.append('lat', lat)
-            formData.append('lng', lng)
+            formData.append('need', need)
+            formData.append('lat', setLatLng.lat)
+            formData.append('lng', setLatLng.lng)
 
-            fetch('/api/request', {
+            fetch('/api/requests', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,6 +51,7 @@ function PostTask() {
             })
                 .then(response => {
                     if (response.status >= 400) {
+
                         alert("Your task description must be less than 200 characters")
                     }
                     else {
@@ -53,9 +62,11 @@ function PostTask() {
                 .then(data => {
                     console.log(data);
                 })
-            resetType();
+            resetNeed();
             resetTitle();
             resetDescription();
+            resetLat();
+            resetLng();
             form.classList.remove('was-validated')
 
         }
@@ -67,16 +78,16 @@ function PostTask() {
             <label htmlFor='type' className="form-label mt-5">Type of the task :
             </label>
             <select
-                id="type"
+                id="need"
                 className="form-control mb-5"
-                name="type"
+                name="need"
                 required
                 type="select"
-                value={type}
-                {...bindType}>
+                {...bindNeed}>
 
-                <option value="material">Material Need</option>
-                <option value="help">help</option></select>
+                <option value="material">material</option>
+                <option value="help">help</option>
+            </select>
 
 
             <label htmlFor="title" className="form-label">Title :
@@ -103,24 +114,26 @@ function PostTask() {
                 value={description}
                 {...bindDescription}
             />
-
-
-
-            {/* <label htmlFor="location" className="form-label">Location :
-            </label>
             <input
-                id="location"
-                className="form-control mb-5"
-                name="location"
-                required
-                type="text"
-                value={location}
-                {...bindLocation}
-            /> */}
+                hidden
+                id="lat"
+                name="lat"
+
+                value={setLatLng.lat}
+                {...bindLat}
+            />
+            <input
+                hidden
+                id="lng"
+                name="lng"
+
+                value={setLatLng.lng}
+                {...bindLng}
+            />
             <input className="btn-success mb-5 px-3 rounded mt-3" type="submit" value="Send"  {...handleSubmit} />
         </form>
 
     );
 }
 
-export default PostTask;
+export default PostRequest;

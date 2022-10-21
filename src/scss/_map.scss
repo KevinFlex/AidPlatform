@@ -8,4 +8,12 @@
 
 .leaflet-container {
     height: 78vh !important;
+
+    .request__new-btn {
+        position: absolute;
+        padding: 2rem;
+        background-color: blueviolet;
+        z-index: 10;
+        top: 3rem;
+    }
 }
