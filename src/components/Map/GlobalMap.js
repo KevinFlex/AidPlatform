@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css'
 import markerIconPng from "leaflet/dist/images/marker-icon.png"
 import { Icon } from "leaflet"
 
-function PersonalMap() {
+function GlobalMap() {
 
     const [data, setData] = useState(RequestListArray)
     const skater = new Icon({
@@ -18,7 +18,7 @@ function PersonalMap() {
     return (
         <>
             {data.map((request, index) => {
-                if (request.isPersonal === false) {
+                if (request.isactive === true) {
                     return (
                         <Marker key={index} className={request.typeRequest} position={[request.position.lat, request.position.lng]} icon={skater}>
                             <Popup onClick={() => {
@@ -34,7 +34,7 @@ function PersonalMap() {
     )
 }
 
-export default PersonalMap;
+export default GlobalMap;
 
 // import L from 'leaflet';
 

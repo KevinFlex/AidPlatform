@@ -14,21 +14,18 @@ function AccordionList() {
     return (
         <>
             {data.map((request, index) => {
-                if (request.isPersonal === false) {
-                    return (
-                        <ul>
-                            <li key={index} className="menu-item">
-                                <a className="mb-3 text-light" onClick={(event) => {
-                                    event.preventDefault();
-                                    setModalVisible(true);
-                                }} href="/">
-                                    {request.title}
-                                </a>
-                            </li>
-                        </ul>
-                    )
-                }
-                return null
+                return (
+                    <ul>
+                        <li key={index} className="menu-item">
+                            <a className="mb-3 text-light" onClick={(event) => {
+                                event.preventDefault();
+                                setModalVisible(true);
+                            }} href="#">
+                                {request.title}
+                            </a>
+                        </li>
+                    </ul>
+                )
 
             })}
         </>

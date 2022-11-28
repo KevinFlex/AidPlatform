@@ -1,3 +1,10 @@
+$navbar-height: 90px;
+
 .navbar {
-    min-height: 90px;
+    min-height: $navbar-height;
+
+}
+
+#navbarNav {
+    flex-basis: -moz-available;
 }

@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import useInput from './Hooks/InputHook'
 import { useState } from 'react'
 import { AuthContext } from "./AuthenticationContext/AuthContext"
-import { BrowserRouter, BrowserRouter as Router, Link } from 'react-router-dom';
-import Cookies from 'js-cookie'
+import { Link, Routes, Route, useNavigate } from 'react-router-dom'; import Cookies from 'js-cookie'
 
 
 
@@ -20,11 +19,12 @@ function NewAccount() {
     const [data, setData] = useState([]);
 
     const [validated, setValidated] = useState(false);
+    const navigate = useNavigate();
 
     const [file, setFile] = useState()
 
     const handleSubmit = (authToggle, form) => {
-        console.log(authToggle, form)
+        console.log(authToggle, form);
 
         if (form.checkValidity() === false) {
 
@@ -55,20 +55,22 @@ function NewAccount() {
                     resetMail();
                     authToggle();
                     Cookies.set('token', data.token);
+                    navigate('/home');
+
                     setData([data.user.firstName, data.user.lastName]);
                     console.log(setData);
+
                 })
-                .catch(response => {
+                .catch(error => {
 
 
-                    console.log(response);
+                    console.log(error);
 
                 })
 
 
             form.classList.remove('was-validated')
             setValidated(true);
-            return <BrowserRouter to='/home' />
 
 
         }

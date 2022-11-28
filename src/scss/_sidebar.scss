@@ -1,3 +1,5 @@
+$navbar-height: 90px;
+
 #page-wrap {
     text-align: center;
     overflow: auto;
@@ -48,7 +50,7 @@
     z-index: 1100;
     width: 300px;
     height: 80%;
-    top: 21.4%;
+    top: $navbar-height;
     transition: all 0.5s ease 0s;
 }
 

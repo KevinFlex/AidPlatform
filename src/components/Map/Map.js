@@ -17,32 +17,22 @@ function Map() {
 
     return (
 
-        // <>
+        <>
+            <MapContainer center={[40.00, 51.25]} zoom={12} scrollWheelZoom={true} style={{ height: "100vh" }}>
+                <UseGeolocation />
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <ZoomControl position="topright" />
 
-        //     <>
-        <MapContainer center={[40.00, 51.25]} zoom={12} scrollWheelZoom={true} style={{ height: "100vh" }}>
-            <UseGeolocation />
-            <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <ZoomControl position="topright" />
-            <AuthContext.Consumer >
+                <PersonalMap />
 
-                {auth => auth
-                    ? (<PersonalMap />)
-                    : (<GlobalMap />)}
-            </AuthContext.Consumer>
+            </MapContainer>
 
-        </MapContainer>
-        //     </>
+            {/* <button className=''><a href='/postTask' className='btn btn-primary text-dark taskAdding'> Add a task</a></button> */}
 
-
-
-
-        //     <button className=''><a href='/postTask' className='btn btn-primary text-dark taskAdding'> Add a task</a></button>
-
-        // </>
+        </>
 
     )
 

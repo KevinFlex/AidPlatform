@@ -19,6 +19,8 @@ import PostRequest from './components/PostRequest'
 import Message from './components/Message'
 import NewAccount from './components/NewAccount'
 import setFile from './components/FileUploader'
+import SideBar from './components/Accordion/SideBar';
+import Conversation from './components/Conversation/Conversation'
 
 function App() {
 
@@ -32,24 +34,21 @@ function App() {
     <AuthContext.Provider value={{ auth, authToggle }}>
       <Router>
         <div className="App">
-          <header>
-            <Navbar />
-          </header>
           <Routes>
             <Route exact path='/' element={
               auth ? (
-                <Home />
+                <>
+                  <Home />
+                </>
               ) : (
                 <Portal />
               )
             } />
-
-            <Route exact path='/home' element={< Home requestListArray={RequestListArray} />}></Route>
-            <Route exact path='/home' element={< Map requestListArray={RequestListArray} />}></Route>
-
+            <Route path='/home' element={<Home />}></Route>
             <Route exact path='/newUser' element={< NewAccount file={setFile} />}></Route>
             <Route path='/postRequest' element={< PostRequest />}></Route>
-            <Route path={'/request/1/messages'} element={< Message />}></Route>
+            <Route path='/getRequest' element={<RequestListArray />}></Route>
+            <Route path={'/request/1/messages'} element={< Conversation />}></Route>
           </Routes>
           <footer>
             <Footer />

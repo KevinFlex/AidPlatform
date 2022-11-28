@@ -39,7 +39,7 @@ function PostRequest() {
             formData.append('description', description)
             formData.append('need', need)
             formData.append('lat', setLatLng.lat)
-            formData.append('lng', setLatLng.lng)
+            formData.append('long', setLatLng.lng)
 
             fetch('/api/requests', {
                 method: 'POST',

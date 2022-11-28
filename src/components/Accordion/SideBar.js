@@ -5,27 +5,19 @@ import AccordionHistoricList from './AccordionHistoricList'
 import { AuthContext } from '../AuthenticationContext/AuthContext';
 import { slide as Menu } from 'react-burger-menu';
 
-
 function SideBar() {
 
     return (
-        <AuthContext.Consumer >
-            <Menu>
-                {auth => auth
-                    ? <>
-                        <div className='mb-5 primary'>
-                            <AccordionPersoList />
-                        </div>
-                        <div className='mb-3 secondary'>
+        <Menu>
+
+            <div className='mb-5 primary'>
+                <AccordionPersoList />
+            </div>
+            {/* <div className='mb-3 secondary'>
                             <AccordionHistoricList />
-                        </div>
-                    </>
+                        </div> */}
 
-                    : <AccordionList />
-                }
-            </Menu>
-        </AuthContext.Consumer>
-
+        </Menu>
     );
 };
 

@@ -1,89 +1,65 @@
-const RequestListArray = [
-    {
-        "typeRequest": "Material",
-        "title": "Green",
-        "description": "bla bla bla... not happy !",
-        // "userRequest": "Dustin Green",
-        "isPersonal": false,
-        "isFinished": false,
-        "TypeTask": "IL",
-        "creationTime": 20220610,
-        "publicationTime": 20220611,
-        position:
-        {
-            "lat": 40.00,
-            "lng": -105.35
-        }
+import React, { useState, useEffect, useCallback } from 'react';
+import Cookies from 'js-cookie';
 
-    },
-    {
-        "typeRequest": "Material",
-        "title": "Green",
-        "description": "bla bla bla... not happy !",
-        "userRequest": "Dustin Green",
-        "isPersonal": true,
-        "isFinished": true,
-        position:
-        {
-            "lat": 39.95,
-            "lng": -105.24
-        }
 
-    }, {
-        "typeRequest": "Material",
-        "title": "Green",
-        "description": "bla bla bla... not happy !",
-        "userRequest": "Dustin Green",
-        "isPersonal": true,
-        "isFinished": false,
-        position:
-        {
-            "lat": 40.06,
-            "lng": -105.26
-        }
+function RequestListArray() {
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    }, {
-        "typeRequest": "Material",
-        "title": "Green",
-        "description": "bla bla bla... not happy !",
-        "userRequest": "Dustin Green",
-        "isPersonal": true,
-        "isFinished": false,
-        position:
-        {
-            "lat": 40.00,
-            "lng": -105.25
-        },
-        message: {
+    useEffect(() => {
+        fetch('/api/requests', {
+            method: 'GET',
+            header: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + Cookies.get('token')
+            }
 
-        }
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw response;
+            })
 
-    }, {
-        "typeRequest": "Material",
-        "title": "Green",
-        "description": "bla bla bla... not happy !",
-        "userRequest": "Dustin Green",
-        "isPersonal": true,
-        "isFinished": false,
-        position:
-        {
-            "lat": 40.02,
-            "lng": -105.26
-        }
+            .then(data => {
 
-    }, {
-        "typeRequest": "Material",
-        "title": "Green",
-        "description": "bla bla bla... not happy !",
-        "userRequest": "Dustin Green",
-        "isPersonal": false,
-        "isFinished": false,
-        position:
-        {
-            "lat": 39.96,
-            "lng": -105.22
-        }
+                console.log(data);
+                setData(data);
+            })
+            .catch((error) => {
+                console.error("Error fetching data: ", error);
+                setError(error);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, [])
 
-    }
-];
+    if (loading) return "Loading...";
+    if (error) return "Error!";
+    if (data)
+
+        return (
+            <>
+                <ul>{data.map((request, index) => {
+                    return (
+                        <li key={index}>
+                            <p>{request.title}</p>
+                            <p>{request.description}</p>
+                            <p>{request.lat}</p>
+                            <p>{request.long}</p>
+                            <p>{request.need}</p>
+                            <p>{request.isactive}</p>
+                            <p>{request.fullifiled}</p>
+
+                        </li>
+                    )
+                })}
+                </ul></>
+        )
+
+}
+
 export default RequestListArray;
