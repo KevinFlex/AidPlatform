@@ -22,7 +22,7 @@ function UseGeolocation() {
 
     return (
 
-        <Link className='request__new-btn' to='/postRequest' state={{ setLatLng: latlng }}>
+        <Link className='request__new-btn btn btn-secondary' to='/postRequest' state={{ setLatLng: latlng }}>
             New Request
         </Link>
     );

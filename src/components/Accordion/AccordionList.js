@@ -1,5 +1,5 @@
 import React from 'react'
-import Message from '../Message'
+import Message from '../Conversation/Message'
 import RequestListArray from '../RequestListArray'
 import { useState } from 'react'
 

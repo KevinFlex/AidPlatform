@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 function AccordionHistoricList() {
 
-    const [data, setData] = useState([RequestListArray]);
+    const [data, setData] = useState([]);
 
 
     return (
@@ -16,7 +16,7 @@ function AccordionHistoricList() {
 
                         <ul>
                             <li key={index} className="menu-item">
-                                <a className="mb-3 text-light" href="request/{task.id}/messages">
+                                <a className="mb-3 text-light">
                                     {request.title}
                                 </a>
                             </li>

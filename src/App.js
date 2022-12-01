@@ -6,7 +6,7 @@ import './App.css';
 
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import { Accordion, Card, Button, Navbar } from 'react-bootstrap'
-
+import 'bootstrap/dist/js/bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { AuthContext } from './components/AuthenticationContext/AuthContext'
 import Home from './components/Home'
@@ -14,12 +14,10 @@ import Footer from './components/Footer'
 import Portal from './components/Portal'
 import { useState } from 'react'
 import RequestListArray from './components/RequestListArray'
-import Map from './components/Map/Map'
 import PostRequest from './components/PostRequest'
-import Message from './components/Message'
+import Message from './components/Conversation/Message'
 import NewAccount from './components/NewAccount'
 import setFile from './components/FileUploader'
-import SideBar from './components/Accordion/SideBar';
 import Conversation from './components/Conversation/Conversation'
 
 function App() {
@@ -44,11 +42,19 @@ function App() {
                 <Portal />
               )
             } />
-            <Route path='/home' element={<Home />}></Route>
+            <Route exact path='/home' element={
+              auth ? (
+                <>
+                  <Home />
+                </>
+              ) : (
+                <Portal />
+              )
+            } />
             <Route exact path='/newUser' element={< NewAccount file={setFile} />}></Route>
             <Route path='/postRequest' element={< PostRequest />}></Route>
-            <Route path='/getRequest' element={<RequestListArray />}></Route>
-            <Route path={'/request/1/messages'} element={< Conversation />}></Route>
+
+            <Route path={'/conversation/:convId'} element={< Conversation />}></Route>
           </Routes>
           <footer>
             <Footer />

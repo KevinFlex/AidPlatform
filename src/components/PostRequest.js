@@ -44,7 +44,6 @@ function PostRequest() {
             fetch('/api/requests', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + Cookies.get('token')
                 },
                 body: formData

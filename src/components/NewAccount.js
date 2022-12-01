@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import useInput from './Hooks/InputHook'
 import { useState } from 'react'
 import { AuthContext } from "./AuthenticationContext/AuthContext"
-import { Link, Routes, Route, useNavigate } from 'react-router-dom'; import Cookies from 'js-cookie'
+import { Link, Routes, Route, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie'
 
 
 

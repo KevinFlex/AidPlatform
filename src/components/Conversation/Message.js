@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import SideBar from './Accordion/SideBar';
+import SideBar from '../Accordion/SideBar';
 
 function Message() {
     const [messages, setMessage] = useState([]);

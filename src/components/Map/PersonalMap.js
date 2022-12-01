@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import useInput from '../Hooks/InputHook'
 import { Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import markerIconPng from "leaflet/dist/images/marker-icon.png"
-import { Icon } from "leaflet"
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
+import { blueIcon, greenIcon } from './Icon.js'
 
 
 function PersonalMap() {
@@ -11,6 +13,12 @@ function PersonalMap() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [activeRequest, setActiveRequest] = useState(false);
+    const { value: requestId, bind: bindRequestId, reset: resetRequestId } = useInput('');
+    const { value: userId, bind: bindUserId, reset: resetUserId } = useInput('');
+
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         fetch('/api/requests', {
@@ -40,27 +48,51 @@ function PersonalMap() {
             .finally(() => {
                 setLoading(false);
             });
-    }, [])
+    }, []);
 
-    const skater = new Icon({
-        iconUrl: markerIconPng,
-        iconSize: [25, 40]
-    });
 
-    function onClick(e) {
-        alert(e.latlng);
-    }
-    const [activeRequest, setActiveRequest] = useState(null);
+    const handleSubmit = (event, request) => {
+        event.preventDefault();
+
+        const formData = new FormData();
+        formData.append('receiver_id', request.user_id)
+        formData.append('request_id', request.id)
+
+        fetch(`/api/conversations/${request.id}`, {
+            method: 'POST',
+            header: {
+                'Authorization': 'Bearer ' + Cookies.get('token')
+            },
+            body: formData
+
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw response;
+            })
+        navigate(`/conversation/${request.id}`);
+        resetRequestId();
+        resetUserId();
+        setActiveRequest(true);
+    };
+
+
 
     return (
         <>
             {data.map((request, index) => {
                 if (request.fullifiled === false) {
+                    if (request.need === "material") {
+                    }
+
                     return (
-                        <Marker key={index} className={request.typeRequest} position={[request.lat, request.long]} icon={skater}>
-                            <Popup onClick={() => {
-                                setActiveRequest(request);
-                            }}>{request.title}</Popup>
+                        <Marker key={index} position={[request.lat, request.long]} icon={blueIcon}>
+                            <Popup><div className='strong'><h4>{request.title}</h4><br /></div>
+                                <div><p>{request.description}</p><br />
+
+                                    <button className="btn btn-success mx-auto" onClick={(event) => { handleSubmit(event, request) }}>Apply</button></div></Popup>
                         </Marker>
                     )
                 }
